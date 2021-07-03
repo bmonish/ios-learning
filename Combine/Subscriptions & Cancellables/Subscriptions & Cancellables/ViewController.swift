@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Subscriptions & Cancellables
-//
-//  Created by Tunde on 13/04/2021.
-//
-
 import UIKit
 import Combine
 
