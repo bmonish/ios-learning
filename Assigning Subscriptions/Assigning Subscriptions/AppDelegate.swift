@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Assigning Subscriptions
-//
-//  Created by Tunde on 13/04/2021.
-//
-
 import UIKit
 
 @main
