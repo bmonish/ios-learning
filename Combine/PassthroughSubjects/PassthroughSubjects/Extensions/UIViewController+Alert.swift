@@ -1,10 +1,3 @@
-//
-//  UIViewController+Alert.swift
-//  PassthroughSubjects
-//
-//  Created by Tunde on 17/04/2021.
-//
-
 import Foundation
 
 import UIKit
