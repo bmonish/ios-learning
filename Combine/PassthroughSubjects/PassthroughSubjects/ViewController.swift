@@ -32,6 +32,8 @@ class ViewController: UIViewController {
         return stackVw
     }()
     
+    private let commentsViewModel = CommentsViewModel()
+    
     override func loadView() {
         super.loadView()
         setup()
@@ -39,7 +41,7 @@ class ViewController: UIViewController {
     
     @objc
     func commentDidTouch() {
-        
+        commentsViewModel.send(comment: commentTxtVw.text)
     }
 }
 

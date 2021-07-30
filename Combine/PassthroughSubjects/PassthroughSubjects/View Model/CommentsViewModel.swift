@@ -20,6 +20,7 @@ private extension CommentsViewModel {
     func setupSubscriptions() {
         
         commentEntered
+            .filter({ $0.isEmpty })
             .sink { val in
                 print("New Comment: \(val)")
             }
