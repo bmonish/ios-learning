@@ -6,6 +6,7 @@ final class CommentsViewModel {
     private let commentEntered = PassthroughSubject<String, Never>()
     private var subscriptions = Set<AnyCancellable>()
     
+    private let wordsToBeFiltered = ["hate", "danger", "accident"]
     init () {
         setupSubscriptions()
     }
@@ -21,8 +22,16 @@ private extension CommentsViewModel {
         
         commentEntered
             .filter({ !$0.isEmpty })
-            .sink { val in
-                print("New Comment: \(val)")
+            .sink { [weak self] val in
+                
+                guard let self = self else { return }
+                
+                if self.wordsToBeFiltered.contains(val) {
+                    
+                } else {
+                    print("New Comment: \(val)")
+                }
+                
             }
             .store(in: &subscriptions)
     }
