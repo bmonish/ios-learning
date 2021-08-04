@@ -15,4 +15,24 @@ final class AccountViewModel {
     
     private var subscriptions = Set<AnyCancellable>()
     
+    func increaseWarning() {
+        warnings.value += 1
+        print("Warning: \(warnings.value)")
+    }
+}
+
+private extension AccountViewModel {
+    
+    func createSubscription() {
+        
+        warnings.filter({ [weak self] val in
+            guard let self = self else { return false }
+            return val >= self.warningLimit
+        })
+            .sink { [weak self ] _ in
+                guard let self = self else { return }
+                self.userAccountStatus.value = .banned
+            }
+            .store(in: &subscriptions)
+    }
 }
