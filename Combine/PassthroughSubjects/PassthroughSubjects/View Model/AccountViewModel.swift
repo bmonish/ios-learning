@@ -15,6 +15,10 @@ final class AccountViewModel {
     
     private var subscriptions = Set<AnyCancellable>()
     
+    init() {
+        createSubscription()
+    }
+    
     func increaseWarning() {
         warnings.value += 1
         print("Warning: \(warnings.value)")
