@@ -7,7 +7,11 @@ final class CommentsViewModel {
     private var subscriptions = Set<AnyCancellable>()
     
     private let wordsToBeFiltered = ["hate", "danger", "accident"]
-    init () {
+    
+    private let manager: AccountViewModel
+    
+    init (manager: AccountViewModel) {
+        self.manager = manager
         setupSubscriptions()
     }
     
