@@ -31,7 +31,7 @@ private extension CommentsViewModel {
                 guard let self = self else { return }
                 
                 if self.wordsToBeFiltered.contains(val) {
-                    
+                    self.manager.increaseWarning()
                 } else {
                     print("New Comment: \(val)")
                 }

@@ -32,7 +32,8 @@ class ViewController: UIViewController {
         return stackVw
     }()
     
-    private let commentsViewModel = CommentsViewModel()
+    private lazy var accountViewModel = AccountViewModel()
+    private lazy var commentsViewModel = CommentsViewModel(manager: accountViewModel)
     
     override func loadView() {
         super.loadView()
