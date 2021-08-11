@@ -38,6 +38,7 @@ class ViewController: UIViewController {
     override func loadView() {
         super.loadView()
         setup()
+        accountSubscription()
     }
     
     @objc
@@ -66,5 +67,9 @@ private extension ViewController {
             formContainerStackVw.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                                          constant: -44)
         ])
+    }
+    
+    func accountSubscription() {
+        
     }
 }
