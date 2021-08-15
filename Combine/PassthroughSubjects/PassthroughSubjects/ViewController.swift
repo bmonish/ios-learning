@@ -35,6 +35,8 @@ class ViewController: UIViewController {
     private lazy var accountViewModel = AccountViewModel()
     private lazy var commentsViewModel = CommentsViewModel(manager: accountViewModel)
     
+    private var subscriptions = Set<AnyCancellable>()
+    
     override func loadView() {
         super.loadView()
         setup()
@@ -71,5 +73,15 @@ private extension ViewController {
     
     func accountSubscription() {
         
+        accountViewModel
+            .userAccountStatus
+            .sink { [weak self] status in
+                guard let self = self else { return }
+                
+                if status == .banned {
+                    self.showBlocked()
+                }
+            }
+            .store(in: &subscriptions)
     }
 }
