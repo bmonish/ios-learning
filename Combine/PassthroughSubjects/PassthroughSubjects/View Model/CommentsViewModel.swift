@@ -6,7 +6,7 @@ final class CommentsViewModel {
     private let commentEntered = PassthroughSubject<String, Never>()
     private var subscriptions = Set<AnyCancellable>()
     
-    private let wordsToBeFiltered = ["hate", "danger", "accident"]
+    private let wordsToBeFiltered = ["Hate", "danger", "accident"]
     
     private let manager: AccountViewModel
     
