@@ -35,14 +35,18 @@ class ViewController: UIViewController {
     
     private let imgLink = "https://blueprint-api-production.s3.amazonaws.com/uploads/story/thumbnail/121489/11a49146-03e6-4f02-8c30-ac3454a1b54b.png"
     
+    private let imgDownloaderViewModel = ImageDownloaderViewModel()
+    private var subscriptions = Set<AnyCancellable>()
+    
     override func loadView() {
         super.loadView()
         setup()
+        setupImageSubscription()
     }
     
     @objc
     func downloadDidTouch() {
-
+        imgDownloaderViewModel.download(url: imgLink)
     }
 }
 
@@ -68,5 +72,13 @@ private extension ViewController {
                                                               constant: -16)
 
         ])
+    }
+    
+    func setupImageSubscription() {
+        
+        imgDownloaderViewModel
+            .image
+            .assign(to: \.image, on: contentImgVw)
+            .store(in: &subscriptions)
     }
 }
