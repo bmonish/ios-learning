@@ -9,20 +9,28 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var label: UILabel!
-    
-    func setupView(){
-        label = UILabel()
+    var label: UILabel = {
+        let label = UILabel()
         label.textAlignment = .center
         label.text = "I'm a test label"
         label.translatesAutoresizingMaskIntoConstraints = false
         
+        return label
+    }()
+    
+    var toolBar: UIToolbar = {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         toolBar.barStyle = UIBarStyle(rawValue: 1)!
         toolBar.isTranslucent = true
         toolBar.backgroundColor = UIColor.red
         toolBar.tintColor = UIColor.white
         toolBar.sizeToFit()
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        return toolBar
+    }()
+    
+    func setupView(){
         let leftButton = UIBarButtonItem(title: "Left", style: .plain, target: self, action: #selector(tappedButton(_:)))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let centerButton = UIBarButtonItem(title: "Center", style: .plain, target: self, action: #selector(tappedButton(_:)))
@@ -31,21 +39,20 @@ class ViewController: UIViewController {
         let rightButton = UIBarButtonItem(title: "Right", style: .plain, target: self, action: #selector(tappedButton(_:)))
         
         // Evenly Spaced
-         toolBar.setItems([leftButton, flexibleSpace, centerButton, flexibleSpace, rightButton], animated: true)
+        toolBar.setItems([leftButton, flexibleSpace, centerButton, flexibleSpace, rightButton], animated: true)
         
         // Left Aligned
-         //toolBar.setItems([leftButton, centerButton, rightButton], animated: true)
+        toolBar.setItems([leftButton, centerButton, rightButton], animated: true)
         
         // Right Aligned
-        //toolBar.setItems([flexibleSpace, leftButton, rightButton], animated: true)
+        toolBar.setItems([flexibleSpace, leftButton, rightButton], animated: true)
         
         // Left & Right Corners
-        //toolBar.setItems([leftButton, flexibleSpace, rightButton], animated: true)
+        toolBar.setItems([leftButton, flexibleSpace, rightButton], animated: true)
         
         // Fixed Space
-        //toolBar.setItems([fixedSpace, leftButton, flexibleSpace, rightButton, fixedSpace], animated: true)
+        toolBar.setItems([fixedSpace, leftButton, flexibleSpace, rightButton, fixedSpace], animated: true)
         
-        toolBar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         view.addSubview(toolBar)
         
