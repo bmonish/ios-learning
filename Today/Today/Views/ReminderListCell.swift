@@ -1,0 +1,30 @@
+//
+//  ReminderListCell.swift
+//  Today
+//
+//  Created by monish-pt4649 on 23/11/21.
+//
+
+import UIKit
+
+class ReminderListCell: UITableViewCell {
+    typealias DoneButtonAction = () -> Void
+    
+    @IBOutlet var doneButton: UIButton!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
+    
+    private var doneButtonAction: DoneButtonAction?
+    
+    @IBAction func doneButtonTriggered(_ sender: UIButton) {
+        doneButtonAction?()
+    }
+    
+    func configure(title: String, dateText: String, isDone: Bool, doneButtonAction: @escaping DoneButtonAction) {
+        titleLabel.text = title
+        dateLabel.text = dateText
+        let image = isDone ? UIImage(systemName: "circle.fill") : UIImage(systemName: "circle")
+        doneButton.setBackgroundImage(image, for: .normal)
+        self.doneButtonAction = doneButtonAction
+    }
+}
