@@ -1,0 +1,65 @@
+//
+//  ViewController.swift
+//  ToolBar
+//
+//  Created by monish-pt4649 on 21/12/21.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+    
+    var label: UILabel!
+    
+    func setupView(){
+        label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+        label.textAlignment = .center
+        label.text = "I'm a test label"
+        label.center = view.center
+        
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        toolBar.barStyle = UIBarStyle(rawValue: 1)!
+        toolBar.isTranslucent = true
+        toolBar.backgroundColor = UIColor.red
+        toolBar.tintColor = UIColor.white
+        toolBar.sizeToFit()
+        let leftButton = UIBarButtonItem(title: "Left", style: .plain, target: self, action: #selector(tappedButton(_:)))
+        let spaceBetween = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let centerButton = UIBarButtonItem(title: "Center", style: .plain, target: self, action: #selector(tappedButton(_:)))
+        let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace.width = 30
+        let rightButton = UIBarButtonItem(title: "Right", style: .plain, target: self, action: #selector(tappedButton(_:)))
+        toolBar.setItems([leftButton, spaceBetween, centerButton, fixedSpace, rightButton], animated: true)
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(label)
+        view.addSubview(toolBar)
+        
+        NSLayoutConstraint.activate([
+            toolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            toolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            toolBar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        setupView()
+    }
+    
+    @objc
+    func tappedButton(_ sender: UIBarButtonItem) {
+        switch sender.title! {
+        case "Left":
+            label.text = "Clicked Left!"
+        case "Right":
+            label.text = "Clicked Right!"
+        case "Center":
+            label.text = "Clicked Center!"
+        default:
+            label.text = "I'm a test label"
+        }
+    }
+}
+
