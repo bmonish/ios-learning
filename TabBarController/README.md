@@ -28,5 +28,18 @@ for x in 0..<items.count {
 }
 ```
 
+## Setting Title Only for the Navigation Bar
+
+```swift
+class FirstViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .yellow
+        // Setting only the Navigation title
+        navigationItem.title = "Welcome"
+    }
+}
+```
+
 ## Output
 https://user-images.githubusercontent.com/31185862/147744347-3caf3f0a-9d5a-45dc-8ecf-5f96b7250dec.mov
