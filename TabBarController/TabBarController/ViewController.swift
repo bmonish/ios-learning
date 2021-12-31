@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .systemBlue
         view.addSubview(button)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-    } 
+    }
 
     func setupTabBar() {
         tabBarVc = UITabBarController()
