@@ -7,5 +7,7 @@
         <page name='AssignUIKit'/>
         <page name='AssignExample'/>
         <page name='AssignTo'/>
+        <page name='MultiThreading-ReceiveOn'/>
+        <page name='MultiThreading-SubscribeOn'/>
     </pages>
 </playground>
