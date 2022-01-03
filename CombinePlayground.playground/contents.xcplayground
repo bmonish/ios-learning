@@ -5,5 +5,6 @@
         <page name='LimitedSubscriptions'/>
         <page name='assignToOn'/>
         <page name='AssignUIKit'/>
+        <page name='AssignExample'/>
     </pages>
 </playground>

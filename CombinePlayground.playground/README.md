@@ -6,6 +6,7 @@
 2. [Limited Subscriptions](#limited-subscriptions) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/LimitedSubscriptions.xcplaygroundpage/Contents.swift)
 3. [Assign To and On Subscriber](#assign-to-and-on-subscriber) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/assignToOn.xcplaygroundpage/Contents.swift)
 4. [Assign UIKit Example](#assign-uikit-example) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignUIKit.xcplaygroundpage/Contents.swift)
+5. [Assign to Memory Cycle](#assign-to-memory-cycle) - [(Go to File)]()
 
 ___
 
@@ -212,6 +213,50 @@ And we make use of the textField's method to update the value of our CurrentValu
 @objc func updateText() {
     self.textMessage.value = textField.text ?? ""
 }
+```
+
+___
+
+## Assign to Memory Cycle
+
+Whenever we use `assign(to:on:self)` it creates a strong reference cycle. So in that case it is recommended to use `sink`. In the following example if we use, assign the object `viewModel` never gets deinitialized. So we use sync to catch the self as `unowned self` to resolve the strong memory cyle issue.
+
+```swift
+struct User {
+    let name: String
+    let id: Int
+}
+
+class ViewModel {
+    
+    var user = CurrentValueSubject<User, Never>(User(name: "Bob", id: 1))
+    var userID: Int = 1 {
+        didSet {
+            print("userId changed \(userID)")
+        }
+    }
+
+    var subscriptions = Set<AnyCancellable>()
+    
+    init() {
+        user
+            .map(\.id)
+//            .assign(to: \.userID, on: self)
+            .sink { [unowned self] value in
+                self.userID = value
+            }
+            .store(in: &subscriptions)
+    }
+    
+    deinit {
+        print("deinit")
+    }
+}
+
+var viewModel: ViewModel? = ViewModel()
+viewModel?.user.send(User(name: "Billy", id: 2))
+
+viewModel = nil
 ```
 
 ___
