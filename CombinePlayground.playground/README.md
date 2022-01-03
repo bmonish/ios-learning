@@ -7,6 +7,7 @@
 3. [Assign To and On Subscriber](#assign-to-and-on-subscriber) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/assignToOn.xcplaygroundpage/Contents.swift)
 4. [Assign UIKit Example](#assign-uikit-example) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignUIKit.xcplaygroundpage/Contents.swift)
 5. [Assign to Memory Cycle](#assign-to-memory-cycle) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignExample.xcplaygroundpage/Contents.swift)
+6. [Assign To](#assign-to) - [(Go to File)]()
 
 ___
 
@@ -260,3 +261,22 @@ viewModel = nil
 ```
 
 ___
+
+## Assign To
+
+The `assign(to:)` operator manages the life cycle of the subscription, canceling the subscription automatically when the Published instance deinitializes. Because of this, the assign(to:) operator `doesn’t return an AnyCancellable` that you’re responsible for like `assign(to:on:)` does.
+
+```swift
+class MyModel: ObservableObject {
+    
+    @Published var lastUpdated: Date = Date()
+    
+    init() {
+         Timer.publish(every: 1.0, on: .main, in: .common)
+             .autoconnect()
+             .assign(to: &$lastUpdated)
+        //inout &, accessing publisher of @Published $
+    }
+}
+```
+---

@@ -6,5 +6,6 @@
         <page name='assignToOn'/>
         <page name='AssignUIKit'/>
         <page name='AssignExample'/>
+        <page name='AssignTo'/>
     </pages>
 </playground>
