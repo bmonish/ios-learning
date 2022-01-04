@@ -5,7 +5,7 @@
 1. [Creating Subscriptions](#creating-subscriptions) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/CreatingSubscription.xcplaygroundpage/Contents.swift)
 2. [Limited Subscriptions](#limited-subscriptions) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/LimitedSubscriptions.xcplaygroundpage/Contents.swift)
 3. [Assign To and On Subscriber](#assign-to-and-on-subscriber) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/assignToOn.xcplaygroundpage/Contents.swift)
-4. [Assign UIKit Example](#assign-uikit-example) = [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignUIKit.xcplaygroundpage/Contents.swift)
+4. [Assign UIKit Example](#assign-uikit-example) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignUIKit.xcplaygroundpage/Contents.swift)
 
 ___
 
