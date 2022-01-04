@@ -5,6 +5,7 @@
 1. [Creating Subscriptions](#creating-subscriptions) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/CreatingSubscription.xcplaygroundpage/Contents.swift)
 2. [Limited Subscriptions](#limited-subscriptions) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/LimitedSubscriptions.xcplaygroundpage/Contents.swift)
 3. [Assign To and On Subscriber](#assign-to-and-on-subscriber) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/assignToOn.xcplaygroundpage/Contents.swift)
+4. [Assign UIKit Example](#assign-uikit-example) = [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignUIKit.xcplaygroundpage/Contents.swift)
 
 ___
 
@@ -182,3 +183,35 @@ let subscription = myRange.publisher
 ```
 
 Here we have a class named `MyClass` which is of Reference type which as a property named `anInt`. Now we create a sample publisher and subscriber to iterate through `myRange` and assign the value to `anInt` property of `myObject` multiplied by 10 using `assign(to:,on:)`
+
+___
+
+## Assign UIKit Example
+
+Creating a publisher named `textMessage`
+
+```swift
+var textMessage = CurrentValueSubject<String, Never>("Hello World")
+```
+
+Now we create a subscriber for the `textMessage` which unwraps the string using `compactMap` and maps it with our desired format and assigns it to the `text` property on `lable` and we are using a set of type `AnyCancellable` to store this subscription.
+
+```swift
+var subscriptions = Set<AnyCancellable>()
+
+textMessage
+    .compactMap({  $0 })
+    .map({ "You typed: \($0)" })
+    .assign(to: \.text, on: label)
+    .store(in: &subscriptions)
+```
+
+And we make use of the textField's method to update the value of our CurrentValueSubject Publisher
+
+```swift
+@objc func updateText() {
+    self.textMessage.value = textField.text ?? ""
+}
+```
+
+___
