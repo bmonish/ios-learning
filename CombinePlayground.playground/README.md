@@ -4,9 +4,10 @@
 
 1. [Creating Subscriptions](#creating-subscriptions) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/CreatingSubscription.xcplaygroundpage/Contents.swift)
 2. [Limited Subscriptions](#limited-subscriptions) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/LimitedSubscriptions.xcplaygroundpage/Contents.swift)
+3. [Assign To and On Subscriber](#assign-to-and-on-subscriber) - [(Go to File)]()
 
+___
 
-<a name="creating-subscriptions"></a>
 ## Creating Subscriptions
 
 ### Publisher
@@ -88,7 +89,6 @@ Timer.publish(every: 0.5, on: .main, in: .common)
 
 ___
 
-<a name="limited-subscriptions"></a>
 ## Limited Subscriptions
 
 They are subsricptions which pass through a limited number of values. For example iterating through an array. So the following code creates an Publisher named `foodbank` and we use a subscription to iterate through that sequence. The publisher reaches the end when it finishes iterating to through all the elements of array. So the `completion` in `sink` will be executed.
@@ -160,3 +160,7 @@ var subscription = foodbank.zip(timer)
 
 ___
 
+## Assign To and On Subscriber
+asdasdsa
+asdasdas
+asdasdsad
