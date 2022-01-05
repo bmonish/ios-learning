@@ -161,6 +161,24 @@ var subscription = foodbank.zip(timer)
 ___
 
 ## Assign To and On Subscriber
-asdasdsa
-asdasdas
-asdasdsad
+
+This type of subscriber is used to assign values to the property of a reference type value. For example classes.
+
+```swift
+class MyClass {
+    var anInt: Int = 0 {
+        didSet {
+            print("anInt was set to: \(anInt)")
+        }
+    }
+}
+
+var myObject = MyClass()
+let myRange = (0...2)
+
+let subscription = myRange.publisher
+    .map { $0 * 10 }
+    .assign(to: \.anInt, on: myObject)
+```
+
+Here we have a class named `MyClass` which is of Reference type which as a property named `anInt`. Now we create a sample publisher and subscriber to iterate through `myRange` and assign the value to `anInt` property of `myObject` multiplied by 10 using `assign(to:,on:)`

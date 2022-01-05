@@ -3,5 +3,6 @@
     <pages>
         <page name='CreatingSubscription'/>
         <page name='LimitedSubscriptions'/>
+        <page name='assignToOn'/>
     </pages>
 </playground>
