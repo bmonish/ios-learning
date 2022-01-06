@@ -13,5 +13,6 @@
         <page name='CurrentValueSubject'/>
         <page name='PassthroughSubject'/>
         <page name='MultiplePublisher-Example'/>
+        <page name='@Published'/>
     </pages>
 </playground>

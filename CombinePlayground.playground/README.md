@@ -13,6 +13,8 @@
 9. [Subscription Pattern](#subscription-pattern) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/SubscriptionPattern.xcplaygroundpage/Contents.swift)
 10. [CurrentValueSubject Publisher](#currentvaluesubject-publisher) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/CurrentValueSubject.xcplaygroundpage/Contents.swift)
 11. [PassthroughSubject Publisher](#passthroughsubject-publisher) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/PassthroughSubject.xcplaygroundpage/Contents.swift)
+12. [@Published Wrapper](#published-wrapper) - [(Go to File)]()
+13. []() - [(Go to File)]()
 ___
 
 ## Creating Subscriptions
@@ -515,3 +517,52 @@ viewModel.newUserNameEntered.send("Bob")
 ```
 
 ___
+
+## @Published Wrapper
+
+It is a `property wrapper`. It adds a publisher to a property. It is used for `class` properties and not `structures.` To access a publisher of property wrapped with @Published we prefix the variable name with `$`. One main thing to note is that when using this wrapper, the property changes, publishing occurs in the property's `willSet` block, which means the subscribers receive wthe new value before it's actually set on the property
+
+```swift
+class ViewModel {
+    
+    // Using @Published
+    @Published var userNames: [String] = ["Bill"]
+    
+    let newUserNameEntered = PassthroughSubject<String, Never>()
+    
+    var subscriptions = Set<AnyCancellable>()
+    
+    init() {
+        
+        $userNames.sink { [unowned self] value in
+            print("Receive Value \(value) with \(self.userNames)")
+        }.store(in: &subscriptions)
+        
+        newUserNameEntered.sink { [unowned self] (value) in
+            self.userNames.append(value)
+        }.store(in: &subscriptions)
+        
+    }
+}
+```
+
+Executing the above code:
+
+```swift
+let viewModel = ViewModel()
+
+// adding a new user
+viewModel.newUserNameEntered.send("Susan")
+
+// By default @Published Publishers acts like AnyPublisher so you can't send new values and it will throw and error
+// viewModel.userNames.send("New Value")
+```
+
+So the output would like:
+
+```
+Receive Value ["Bill"] with ["Bill"]
+Receive Value ["Bill", "Susan"] with ["Bill"]
+```
+
+You can see that when we sent Susan the userNames was still `["Bill"]`
