@@ -3,7 +3,7 @@
 ## Contents:
 
 1. [Creating Subscriptions](#creating-subscriptions) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/CreatingSubscription.xcplaygroundpage/Contents.swift)
-2. [Limited Subscriptions](#limited-subscriptions)
+2. [Limited Subscriptions](#limited-subscriptions) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/LimitedSubscriptions.xcplaygroundpage/Contents.swift)
 
 
 <a name="creating-subscriptions"></a>
