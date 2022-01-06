@@ -18,6 +18,8 @@ We can use certain operators like `scan` and `filter` to modify or make addition
 ### Subscribers
 They are used to subscribe and listen to the publisher. The subscription can be cancelled using `subscription.cancel()` or by setting the subscription variable to `nil`
 
+___
+
 #### Code:
 
 ```swift
@@ -84,6 +86,8 @@ Timer.publish(every: 0.5, on: .main, in: .common)
 .throttle(for: .seconds(2), scheduler: DispatchQueue.main, latest: true)
 ```
 
+___
+
 <a name="limited-subscriptions"></a>
 ## Limited Subscriptions
 
@@ -99,4 +103,60 @@ let subscription = foodbank
         print("Receive Item \(foodItem)")
     }
 ```
+
+We can use `zip` to combine two publishers. It excepts the length of the both publishers to be same and terminates the data stream when there is a mismatch.
+
+```swift
+var subscription = foodbank.zip(timer)
+    .sink { (completion) in
+        print("Completion: \(completion)")
+    } receiveValue : { (foodItem, timestamp) in
+        print("Receive Item \(foodItem) with \(timestamp)")
+    }
+```
+
+The completion has two types: `finished` and `failure`. We can use them to further customize the behaviour of the subscriber.
+
+```swift
+var subscription = foodbank.zip(timer)
+    .sink { (completion) in
+        switch completion {
+        case .finished:
+            print("Completion: Finished")
+        case .failure(let error):
+            print("Completion with failure: \(error.localizedDescription)")
+        }
+    } receiveValue : { (foodItem, timestamp) in
+        print("Receive Item \(foodItem) with \(timestamp)")
+    }
+```
+
+Since this never gonna fail, we are gonna mimic a error behaviour by writing some additional code. We are mapping the tuple and calling the `throwAtEndDate` function which gives a combined string and if the timestamp exceeds a certain `endDate` it throws an error. (`MyError`). In this case the subscription ends before the stream completes and it will be handled by `.failure` case inside the switch statement in the sink.
+
+```swift
+func throwAtEndDate(_ foodItem: String, _ date: Date) throws -> String {
+    if date < endDate {
+        return "\(foodItem) at \(date)"
+    } else {
+        throw MyError()
+    }
+}
+
+var subscription = foodbank.zip(timer)
+    .tryMap({ (foodItem, timestamp) in
+        try throwAtEndDate(foodItem, timestamp)
+    })
+    .sink { (completion) in
+        switch completion {
+        case .finished:
+            print("Completion: Finished")
+        case .failure(let error):
+            print("Completion with failure: \(error.localizedDescription)")
+        }
+    } receiveValue : { (result) in
+        print("Receive Item \(result)")
+    }
+```
+
+___
 
