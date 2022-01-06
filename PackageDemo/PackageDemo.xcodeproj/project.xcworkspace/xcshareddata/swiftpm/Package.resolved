@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MonishPackage",
+        "repositoryURL": "https://github.com/bmonish/MonishPackage.git",
+        "state": {
+          "branch": "main",
+          "revision": "79d92950ce60dd359158e9a4c9b4fd2daae66553",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
