@@ -84,7 +84,19 @@ Timer.publish(every: 0.5, on: .main, in: .common)
 .throttle(for: .seconds(2), scheduler: DispatchQueue.main, latest: true)
 ```
 
-
-
 <a name="limited-subscriptions"></a>
 ## Limited Subscriptions
+
+They are subsricptions which pass through a limited number of values. For example iterating through an array. So the following code creates an Publisher named `foodbank` and we use a subscription to iterate through that sequence. The publisher reaches the end when it finishes iterating to through all the elements of array. So the `completion` in `sink` will be executed.
+
+```swift
+let foodbank: Publishers.Sequence<[String], Never> = ["apple", "bread", "orange", "milk"].publisher
+
+let subscription = foodbank
+    .sink { (completion) in
+        print("Completion: \(completion)")
+    } receiveValue : { foodItem in
+        print("Receive Item \(foodItem)")
+    }
+```
+
