@@ -11,8 +11,8 @@
 7. [Receive On](#receive-on) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/MultiThreading-ReceiveOn.xcplaygroundpage/Contents.swift)
 8. [Subscribe On](#subscribe-on) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/MultiThreading-SubscribeOn.xcplaygroundpage/Contents.swift)
 9. [Subscription Pattern](#subscription-pattern) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/SubscriptionPattern.xcplaygroundpage/Contents.swift)
-10. [CurrentValueSubject Publisher](#currentvaluesubject-publisher) - [(Go to File)]()
-11. [PassthroughSubject Publisher](#passthroughsubject-publisher) - [(Go to File)]()
+10. [CurrentValueSubject Publisher](#currentvaluesubject-publisher) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/CurrentValueSubject.xcplaygroundpage/Contents.swift)
+11. [PassthroughSubject Publisher](#passthroughsubject-publisher) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/PassthroughSubject.xcplaygroundpage/Contents.swift)
 ___
 
 ## Creating Subscriptions
@@ -458,7 +458,7 @@ newUserNameEntered.send("Bob")
 newUserNameEntered.send(completion: .finished)
 ```
 
-### Example of Using CurrentValueSubject and PassthroughSubject together - [Example File]()
+### Example of Using CurrentValueSubject and PassthroughSubject together - [Example File](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/MultiplePublisher-Example.xcplaygroundpage/Contents.swift)
 
 In this example we have userNamesSubject which is of type `CurrentValueSubject` publisher and it holds an array of strings which are userNames. Since we want this to be protected we can use `AnyPublisher`. It is a publisher that performs type erasure by wrapping another publisher.
 
