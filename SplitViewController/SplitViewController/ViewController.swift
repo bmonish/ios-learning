@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     
     @objc
     func didTapButton(){
+        // This line is to enable the Modal to be Full Screen
         splitVC.modalPresentationStyle = .fullScreen
         
         // Creating View Controllers
@@ -67,6 +68,7 @@ extension ViewController: MenuControllerDelegate {
         (splitVC.viewControllers.last as? UINavigationController)?.pushViewController(vc, animated: true)
     }
     
+    // IGNORE:
 //    func getSplitVC() -> UISplitViewController {
 //        print("Returning SplitVC")
 //        return splitVC
@@ -75,17 +77,19 @@ extension ViewController: MenuControllerDelegate {
 
 protocol MenuControllerDelegate: AnyObject  {
     func didTapMenuItem(at index: Int, title: String?)
-//    func getSplitVC() -> UISplitViewController
 }
 
 class MenuController: UITableViewController {
     
     weak var delegate: MenuControllerDelegate?
     
+    // IGNORE:
 //    var closeMenuButton: UIBarButtonItem!
     
     override init(style: UITableView.Style) {
         super.init(style: style)
+        
+        // IGNORE:
 //        closeMenuButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(hideMenu))
 //        navigationItem.rightBarButtonItem = closeMenuButton
         title = "Menu"
@@ -94,6 +98,7 @@ class MenuController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
+//    IGNORE
 //    @objc
 //    func hideMenu() {
 //        print("Hide Menu is called")
