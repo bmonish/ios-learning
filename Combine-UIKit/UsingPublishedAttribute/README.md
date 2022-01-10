@@ -16,7 +16,7 @@ The `@Published` attribute will provide a publisher for us to use.
 @Published private var name = ""
 ```
 
-Since we already have a publisher, we can directly use it. Here we are going to Combine the three publisher and create our own publisher which meets our requirement.
+Since we already have the publishers, we can directly use it. Here we are going to Combine the three publishers and create our own publisher which meets our requirement.
 
 ```swift
 private var validToSubmit: AnyPublisher<Bool, Never> {
@@ -27,7 +27,7 @@ private var validToSubmit: AnyPublisher<Bool, Never> {
 }
 ```
 
-Here our requirement is to enable the button only when the two switches and the name is filled. With the help of the these functions we are updating the variables which are `@Published`
+Here our requirement is to enable the button only when the two switches is turned on and the name is filled. With the help of the these functions we are updating the variables which have the attribute `@Published`
 
 ```swift
 @objc
@@ -46,7 +46,7 @@ func nameChanged(_ sender: UITextField) {
 }
 ```
 
-Finally we just need to use our `validToSubmit` publisher and see whether the `saveButton` should be enabled or not. Our publisher provides the boolean which we are assigning to the `.isEnabled` property of the `saveButton`.
+Finally we just need to use our `validToSubmit` publisher and see whether the `saveButton` should be enabled or not. For that Our publisher provides a boolean which we are assigning to the `.isEnabled` property of the `saveButton`.
 
 ```swift
 buttonSubscriber = validToSubmit
