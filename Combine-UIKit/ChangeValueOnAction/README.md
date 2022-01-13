@@ -19,9 +19,9 @@ extension Notification.Name {
 }
 ```
 
-When the `publishButton` is pressed we are getting the text friend the `blogTextField` and setting it to the variable `title`. If there is no title present we are setting it to "Coming Soon".
+When the `publishButton` is pressed we are getting the text from the `blogTextField` and setting it to the variable `title`. If there is no title present we are setting it to "Coming Soon".
 
-We then create a `blogPost` with that title and trigger the `Notification` named `newBlogPost` with the object we just created. (`blogPost`)
+We then create a `blogPost` with that title and trigger the `Notification` named `newBlogPost` along with the object we just created. (`blogPost`)
 
 ```swift
 @objc
@@ -32,7 +32,7 @@ func publishButtonTapped(_ sender: UIButton) {
 }
 ````
 
-Creating a publisher for the notification for the name `blogPost` and when the notification is triggered we take the object passed and return the `title` for the subscriber to use
+Creating a publisher for the notification with the name `blogPost` and when the notification is triggered we take the object passed and return the `title` for the subscriber to use.
 
 ```swift
 let publisher = NotificationCenter.Publisher(center: .default, name: .newBlogPost, object: nil)
