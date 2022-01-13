@@ -26,3 +26,31 @@ private var validToSubmit: AnyPublisher<Bool, Never> {
         }.eraseToAnyPublisher()
 }
 ```
+
+Here our requirement is to enable the button only when the two switches and the name is filled. With the help of the these functions we are updating the variables which are `@Published`
+
+```swift
+@objc
+func acceptTerms(_ sender: UISwitch) {
+    acceptedTerms = sender.isOn
+}
+
+@objc
+func acceptPrivacy(_ sender: UISwitch) {
+    acceptedPrivacy = sender.isOn
+}
+
+@objc
+func nameChanged(_ sender: UITextField) {
+    name = sender.text ?? ""
+}
+```
+
+Finally we just need to use our `validToSubmit` publisher and see whether the `saveButton` should be enabled or not. Our publisher provides the boolean which we are assigning to the `.isEnabled` property of the `saveButton`.
+
+```swift
+buttonSubscriber = validToSubmit
+        .receive(on: RunLoop.main)
+        .assign(to: \.isEnabled, on: saveButton)
+```
+___
