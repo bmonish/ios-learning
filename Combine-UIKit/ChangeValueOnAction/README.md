@@ -1,5 +1,7 @@
 ## Change a Value when an Action is Triggered using Combine
 
+___
+
 ## Output:
 
 <img src="https://user-images.githubusercontent.com/31185862/150362164-b43e16bf-210c-426d-8a5b-cce143301f82.png" width="300" />
@@ -8,3 +10,22 @@
 ___
 
 ## Explanation:
+
+Creating a notification name for us to trigger that notification
+
+```swift
+extension Notification.Name {
+    static let newBlogPost = Notification.Name("newPost")
+}
+```
+
+When the `publishButton` is pressed we are getting the text friend the `blogTextField` and setting it to the variable `title`. If there is no title present we are setting it to "Coming Soon".
+
+```swift
+@objc
+func publishButtonTapped(_ sender: UIButton) {
+    let title = blogTextField.text ?? "Coming Soon"
+    let blogPost = BlogPost(title: title)
+    NotificationCenter.default.post(name: .newBlogPost, object: blogPost)
+}
+````
