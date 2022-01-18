@@ -13,6 +13,10 @@
 		3FE9CAA9279949D6002ADC9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FE9CAA7279949D6002ADC9B /* Main.storyboard */; };
 		3FE9CAAB279949D9002ADC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FE9CAAA279949D9002ADC9B /* Assets.xcassets */; };
 		3FE9CAAE279949D9002ADC9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FE9CAAC279949D9002ADC9B /* LaunchScreen.storyboard */; };
+		3FE9CAB7279963B0002ADC9B /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9CAB6279963B0002ADC9B /* Observable.swift */; };
+		3FE9CABA279963FB002ADC9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9CAB9279963FB002ADC9B /* User.swift */; };
+		3FE9CABD27996499002ADC9B /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9CABC27996499002ADC9B /* UserListViewModel.swift */; };
+		3FE9CABF279964BC002ADC9B /* UserTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9CABE279964BC002ADC9B /* UserTableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		3FE9CAAA279949D9002ADC9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FE9CAAD279949D9002ADC9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FE9CAAF279949D9002ADC9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FE9CAB6279963B0002ADC9B /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		3FE9CAB9279963FB002ADC9B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3FE9CABC27996499002ADC9B /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		3FE9CABE279964BC002ADC9B /* UserTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,43 @@
 		3FE9CAA0279949D6002ADC9B /* MVVMBindings */ = {
 			isa = PBXGroup;
 			children = (
-				3FE9CAA1279949D6002ADC9B /* AppDelegate.swift */,
-				3FE9CAA3279949D6002ADC9B /* SceneDelegate.swift */,
+				3FE9CAB52799639A002ADC9B /* Observables */,
+				3FE9CAB8279963E4002ADC9B /* Models */,
+				3FE9CABB27996426002ADC9B /* ViewModels */,
 				3FE9CAA5279949D6002ADC9B /* ViewController.swift */,
+				3FE9CAA3279949D6002ADC9B /* SceneDelegate.swift */,
+				3FE9CAA1279949D6002ADC9B /* AppDelegate.swift */,
 				3FE9CAA7279949D6002ADC9B /* Main.storyboard */,
 				3FE9CAAA279949D9002ADC9B /* Assets.xcassets */,
 				3FE9CAAC279949D9002ADC9B /* LaunchScreen.storyboard */,
 				3FE9CAAF279949D9002ADC9B /* Info.plist */,
 			);
 			path = MVVMBindings;
+			sourceTree = "<group>";
+		};
+		3FE9CAB52799639A002ADC9B /* Observables */ = {
+			isa = PBXGroup;
+			children = (
+				3FE9CAB6279963B0002ADC9B /* Observable.swift */,
+			);
+			path = Observables;
+			sourceTree = "<group>";
+		};
+		3FE9CAB8279963E4002ADC9B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3FE9CAB9279963FB002ADC9B /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3FE9CABB27996426002ADC9B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3FE9CABC27996499002ADC9B /* UserListViewModel.swift */,
+				3FE9CABE279964BC002ADC9B /* UserTableViewCellViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +174,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE9CAB7279963B0002ADC9B /* Observable.swift in Sources */,
+				3FE9CABD27996499002ADC9B /* UserListViewModel.swift in Sources */,
 				3FE9CAA6279949D6002ADC9B /* ViewController.swift in Sources */,
+				3FE9CABF279964BC002ADC9B /* UserTableViewCellViewModel.swift in Sources */,
 				3FE9CAA2279949D6002ADC9B /* AppDelegate.swift in Sources */,
+				3FE9CABA279963FB002ADC9B /* User.swift in Sources */,
 				3FE9CAA4279949D6002ADC9B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
