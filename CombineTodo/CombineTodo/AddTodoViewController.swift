@@ -37,7 +37,6 @@ class AddTodoViewController: UIViewController {
     @objc
     fileprivate func saveTodo() {
         print("Saving Todo")
-        print("TextView value", notesTextField.text!)
         saveTodoToken = NetworkingService.saveTodo(title: textField.text!, notes: notesTextField.text!)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] (completion) in

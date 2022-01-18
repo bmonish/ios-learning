@@ -31,4 +31,11 @@ enum NetworkingService {
             promise(.success(todo))
         }
     }
+    
+    static func deleteTodo(at atIndex: Int) -> Future<Todo, Error> {
+        return Future { promise in
+            let deletedTodo = Todo.todos.remove(at: atIndex)
+            promise(.success(deletedTodo))
+        }
+    }
 }

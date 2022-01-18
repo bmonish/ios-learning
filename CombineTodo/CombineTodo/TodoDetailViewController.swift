@@ -9,21 +9,46 @@ import Combine
 import UIKit
 
 class TodoDetailViewController: UITableViewController {
-
+    
+    var deleteButton: UIBarButtonItem!
+    
     private var todoIndex: Int?
     private var todoTitle: String?
     private var todoNote: String?
-
+    
     init(atIndex: Int) {
         self.todoIndex = atIndex
         super.init(nibName: nil, bundle: nil)
     }
     
-    private var getTodoToken: AnyCancellable?
+    fileprivate func setupNavBar() {
+        navigationItem.title = "View Todo"
+        deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteTodo))
+        navigationItem.rightBarButtonItem = deleteButton
+    }
+    
+    private var tokens = Set<AnyCancellable>()
+    
+    @objc
+    func deleteTodo() {
+        print("Deleting Todo")
+        NetworkingService.deleteTodo(at: todoIndex!)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] (completion) in
+                switch completion {
+                case .finished:
+                    print("Deleted")
+                    self?.navigationController?.popToRootViewController(animated: true)
+                case .failure(let error):
+                    print("Oops", error)
+                }}, receiveValue: { (todo) in
+                    print("Deleted todo", todo)
+                }).store(in: &tokens)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getTodoToken = NetworkingService.getTodo(todoIndex!)
+        NetworkingService.getTodo(todoIndex!)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { (completion) in
                 switch completion {
@@ -37,7 +62,7 @@ class TodoDetailViewController: UITableViewController {
                 print(todo)
                 self?.todoTitle = todo.title
                 self?.todoNote = todo.notes
-            })
+            }).store(in: &tokens)
     }
     
     required init?(coder: NSCoder) {
@@ -47,8 +72,8 @@ class TodoDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navigationItem.title = "View Todo"
         view.backgroundColor = .white
+        setupNavBar()
     }
 }
 
