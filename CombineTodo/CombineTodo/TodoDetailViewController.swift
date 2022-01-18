@@ -1,0 +1,84 @@
+//
+//  TodoDetailViewController.swift
+//  CombineTodo
+//
+//  Created by monish-pt4649 on 19/01/22.
+//
+
+import Combine
+import UIKit
+
+class TodoDetailViewController: UITableViewController {
+
+    private var todoIndex: Int?
+    private var todoTitle: String?
+    private var todoNote: String?
+
+    init(atIndex: Int) {
+        self.todoIndex = atIndex
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    private var getTodoToken: AnyCancellable?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getTodoToken = NetworkingService.getTodo(todoIndex!)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { (completion) in
+                switch completion {
+                case .finished:
+                    print("Success Detail")
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    print("Oops", error)
+                }
+            }, receiveValue: { [weak self] (todo) in
+                print(todo)
+                self?.todoTitle = todo.title
+                self?.todoNote = todo.notes
+            })
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        navigationItem.title = "View Todo"
+        view.backgroundColor = .white
+    }
+}
+
+extension TodoDetailViewController {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 0) {
+            return "Title"
+        } else {
+            return "Notes"
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        if (indexPath.section == 0) {
+            cell.textLabel?.text = todoTitle ?? "Oops"
+        } else {
+            cell.textLabel?.text = todoNote ?? "-"
+        }
+        
+        return cell
+    }
+    
+}
