@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @objc
     func addTodo() {
-        navigationController?.pushViewController(AddTodoViewController(), animated: true)
+        navigationController?.pushViewController(AddTodoViewController(isEdit: false, atIndex: nil), animated: true)
         print("Adding New Todo")
     }
 

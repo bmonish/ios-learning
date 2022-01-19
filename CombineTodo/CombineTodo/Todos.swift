@@ -8,10 +8,10 @@
 import Foundation
 
 struct Todo {
-    let title: String
-    let notes: String?
+    var title: String
+    var notes: String?
 }
 
 extension Todo {
-    static var todos = [Todo(title: "Todo 1", notes: nil), Todo(title: "Todo 2", notes: nil)]
+    static var todos = [Todo(title: "Todo 1", notes: nil), Todo(title: "Todo 2", notes: "This is the description written for Todo 2")]
 }

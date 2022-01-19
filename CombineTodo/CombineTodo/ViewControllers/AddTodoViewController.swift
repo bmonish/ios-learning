@@ -10,6 +10,9 @@ import Combine
 
 class AddTodoViewController: UIViewController {
     
+    private var isEdit: Bool!
+    private var todoIndex: Int?
+    
     var saveButton: UIBarButtonItem!
     var textField = UITextField.configureMyTextField(placeholder: "Enter Title", height: 40)
     var notesTextField: UITextView = {
@@ -19,12 +22,23 @@ class AddTodoViewController: UIViewController {
         notesTextField.layer.opacity = 1
         notesTextField.layer.cornerRadius = 5
         notesTextField.text = "Enter Notes"
-        notesTextField.textColor = .lightGray
         notesTextField.font = UIFont.systemFont(ofSize: 15)
         notesTextField.layer.borderColor = UIColor.gray.cgColor
         notesTextField.translatesAutoresizingMaskIntoConstraints = false
         return notesTextField
     }()
+    
+    init(isEdit: Bool, atIndex: Int?) {
+        self.isEdit = isEdit
+        if let atIndex = atIndex {
+            self.todoIndex = atIndex
+        }
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     fileprivate func setupNavBar() {
         navigationItem.title = "Add Todo"
@@ -32,24 +46,60 @@ class AddTodoViewController: UIViewController {
         navigationItem.rightBarButtonItem = saveButton
     }
     
-    var saveTodoToken: AnyCancellable?
+    private var tokens = Set<AnyCancellable>()
     
     @objc
     fileprivate func saveTodo() {
         print("Saving Todo")
-        saveTodoToken = NetworkingService.saveTodo(title: textField.text!, notes: notesTextField.text!)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] (completion) in
-                switch completion {
-                case .finished:
-                    print("Success")
-                    self?.navigationController?.popToRootViewController(animated: true)
-                case .failure(let error):
-                    print("Oops", error)
-                }
-            }, receiveValue: { (todo) in
-                print("Todo Added: ", todo)
-            })
+        if (isEdit == false) {
+            NetworkingService.saveTodo(title: textField.text!, notes: notesTextField.text!)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { [weak self] (completion) in
+                    switch completion {
+                    case .finished:
+                        print("Success")
+                        self?.navigationController?.popToRootViewController(animated: true)
+                    case .failure(let error):
+                        print("Oops", error)
+                    }
+                }, receiveValue: { (todo) in
+                    print("Todo Added: ", todo)
+                }).store(in: &tokens)
+        } else {
+            NetworkingService.updateTodo(at: todoIndex ?? 0, title: textField.text!, notes: notesTextField.text ?? "-")
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { [weak self] (completion) in
+                    switch completion {
+                    case .finished:
+                        print("Success")
+                        self?.navigationController?.popToRootViewController(animated: true)
+                    case .failure(let error):
+                        print("Oops", error)
+                    }
+                }, receiveValue: { (todo) in
+                    print("Todo Updated: ", todo)
+                }).store(in: &tokens)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isEdit == true {
+            NetworkingService.getTodo(todoIndex!)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { (completion) in
+                    switch completion {
+                    case .finished:
+                        print("Getting Data to Edit")
+                    case .failure(let error):
+                        print("Oops", error)
+                    }
+                }, receiveValue: { [weak self] (todo) in
+                    self?.textField.text = todo.title
+                    self?.notesTextField.text = todo.notes
+                }).store(in: &tokens)
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -60,6 +110,11 @@ class AddTodoViewController: UIViewController {
         textField.delegate = self
         self.view.addSubview(textField)
         notesTextField.delegate = self
+        if isEdit == true {
+            notesTextField.textColor = .black
+        } else {
+            notesTextField.textColor = .lightGray
+        }
         self.view.addSubview(notesTextField)
         
         NSLayoutConstraint.activate([

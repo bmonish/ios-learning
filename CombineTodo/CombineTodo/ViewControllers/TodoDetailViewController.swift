@@ -11,6 +11,7 @@ import UIKit
 class TodoDetailViewController: UITableViewController {
     
     var deleteButton: UIBarButtonItem!
+    var editButton: UIBarButtonItem!
     
     private var todoIndex: Int?
     private var todoTitle: String?
@@ -24,10 +25,18 @@ class TodoDetailViewController: UITableViewController {
     fileprivate func setupNavBar() {
         navigationItem.title = "View Todo"
         deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteTodo))
-        navigationItem.rightBarButtonItem = deleteButton
+        editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editTodo))
+        navigationItem.rightBarButtonItems = [editButton, deleteButton]
+        
     }
     
     private var tokens = Set<AnyCancellable>()
+    
+    @objc
+    func editTodo() {
+        let editVC = AddTodoViewController(isEdit: true, atIndex: todoIndex)
+        self.navigationController?.pushViewController(editVC, animated: true)
+    }
     
     @objc
     func deleteTodo() {
@@ -104,6 +113,11 @@ extension TodoDetailViewController {
         }
         
         return cell
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        self.editButtonItem.isEnabled = true
     }
     
 }

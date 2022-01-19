@@ -32,6 +32,14 @@ enum NetworkingService {
         }
     }
     
+    static func updateTodo(at atIndex: Int, title: String, notes: String?) -> Future<Todo, Error> {
+        return Future { promise in
+            Todo.todos[atIndex].title = title
+            Todo.todos[atIndex].notes = notes
+            let updatedTodo = Todo.todos[atIndex]
+            promise(.success(updatedTodo))
+        }
+    }
     static func deleteTodo(at atIndex: Int) -> Future<Todo, Error> {
         return Future { promise in
             let deletedTodo = Todo.todos.remove(at: atIndex)
