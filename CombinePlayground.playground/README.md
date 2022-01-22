@@ -10,6 +10,7 @@
 6. [Assign To](#assign-to) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignTo.xcplaygroundpage/Contents.swift)
 7. [Receive On](#receive-on) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/MultiThreading-ReceiveOn.xcplaygroundpage/Contents.swift)
 8. [Subscribe On](#subscribe-on) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/MultiThreading-SubscribeOn.xcplaygroundpage/Contents.swift)
+9. [Subscription Pattern](#subscription-pattern) - [(Go to File)]()
 
 ___
 
@@ -327,3 +328,41 @@ let subscription = URLSession.shared.dataTaskPublisher(for: URL(string: "https:/
 ```
 
 ___
+
+## Subscription Pattern
+
+How the subscription pattern works is that the subscriber first subscribe to the publisher and it will receive a subscription. then the subscriber request the demand and the publisher provides the values based on the demand. Once it is completed, the subscriber receives the completion.
+
+```swift
+class MyClass {
+    var anInt: Int = 0 {
+        didSet {
+            print("didSet \(anInt)")
+        }
+    }
+}
+
+let obj = MyClass()
+let pub = (0...2).publisher
+let subscriber = Subscribers.Assign(object: obj, keyPath: \.anInt)
+
+let cancellable = pub
+    .print("🔥")
+    .receive(subscriber: subscriber)
+```
+
+So the Output for the above, would look like:
+```
+🔥: receive subscription: (0...2)
+🔥: request unlimited
+🔥: receive value: (0)
+didSet 0
+🔥: receive value: (1)
+didSet 1
+🔥: receive value: (2)
+didSet 2
+🔥: receive finished
+```
+
+___
+
