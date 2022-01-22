@@ -37,15 +37,54 @@ var subscription: AnyCancellable? = Timer.publish(every: 0.5, on: .main, in: .co
     }
 ```
 
-Breakdown:
+#### Breakdown:
 
-- Publisher
-For this publisher we can give the frequency `every` which defines the interval in which the publisher emits the event and we can also define the `thread` and the `scheduler options`. And we use auto connect to connect to the publisher.
+- **Publisher**:
+
+    For this publisher we can give the frequency `every` which defines the interval in which the publisher emits the event and we can also define the `thread` and the `scheduler options`. And we use auto connect to connect to the publisher.
 
 ```swift
 Timer.publish(every: 0.5, on: .main, in: .common)
     .autoconnect()
 ```
+
+- **Subscriber**:
+
+    We have a method `sink` to receive the completion and value. It takes two closure handlers and runs whenever it receives a completion and a value.
+
+```swift
+.sink { completion in
+    print("Data Stream Completion: \(completion)")
+} receiveValue: { time in
+    print("Received Value: \(time)")
+}
+```
+
+- **Operators**:
+
+    We use operators to modify the data stream. `scan` is used to store the previous value and modify it. It takes the initial value and calculates the next result.
+
+```swift
+.scan(0, { (count, _) in
+    return count + 1
+})
+```
+
+`filter` is used to allow only certain values to be passed based on a boolean.
+
+```swift
+.filter({ count in
+    return count < 6
+})
+```
+
+`throttle` works as a debounce and it takes in an `interval`, `scheduler` and whether to use the `first` or the `latest` value within that time frame.
+
+```swift
+.throttle(for: .seconds(2), scheduler: DispatchQueue.main, latest: true)
+```
+
+
 
 <a name="limited-subscriptions"></a>
 ## Limited Subscriptions
