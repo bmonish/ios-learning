@@ -8,6 +8,8 @@
 4. [Assign UIKit Example](#assign-uikit-example) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignUIKit.xcplaygroundpage/Contents.swift)
 5. [Assign to Memory Cycle](#assign-to-memory-cycle) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignExample.xcplaygroundpage/Contents.swift)
 6. [Assign To](#assign-to) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/AssignTo.xcplaygroundpage/Contents.swift)
+7. [Receive On](#receive-on) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/MultiThreading-ReceiveOn.xcplaygroundpage/Contents.swift)
+8. [Subscribe On](#subscribe-on) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/MultiThreading-SubscribeOn.xcplaygroundpage/Contents.swift)
 
 ___
 
@@ -279,4 +281,49 @@ class MyModel: ObservableObject {
     }
 }
 ```
+
 ---
+
+## Receive On
+
+This is used to modify in which thread the subscription should run on going downstream. This is useful when we have to perform resource intensive task in the background and do the UI updates on the main thread.
+
+```swift
+// Creating a Publisher
+let intSubject = PassthroughSubject<Int, Never>()
+
+let subscription = intSubject
+    .map { $0 } // Let's assume we are doing a resource intensive task. This can be done in the background and after it ccompletes we can switch to main thread
+    .receive(on: DispatchQueue.main) // This changes the thread to main.
+    .sink(receiveValue: { value in
+        print("Receive Value: \(value)")
+        print(Thread.current)
+    })
+
+
+// Sending values to Publisher
+intSubject.send(1)
+
+DispatchQueue.global().async {
+    intSubject.send(2)
+}
+```
+___
+
+## Subscribe On
+
+This is used incase if we want to modify the thread going upstream. But it only works if the Publisher doesn't specify a thread. For example the URL Session datTaskPublisher requires to be run on the background thread and we can't use `subscribe(on:)` to run it on the main thread.
+
+```swift
+let subscription = URLSession.shared.dataTaskPublisher(for: URL(string: "https://jsonplaceholder.typicode.com")!)
+    .map({ result in
+        print(Thread.current.isMainThread)
+    })
+    .subscribe(on: DispatchQueue.main) // This won't change the upstream thread because URL session requires to be run on the background thread. If we have a publisher that doesn't specify the thread this subscribe(on:) would've changed the upstream's thread
+    .receive(on: DispatchQueue.main)
+    .sink(receiveCompletion: { _ in }, receiveValue: { value in
+        print(Thread.current.isMainThread)
+    })
+```
+
+___
