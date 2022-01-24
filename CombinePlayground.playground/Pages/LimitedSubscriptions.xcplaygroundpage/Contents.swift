@@ -17,7 +17,7 @@ var timer = Timer.publish(every: 1, on: .main, in: .common)
 //    }
 
 
-// Subscription types
+// Subscription Completion types
 
 //var subscription = foodbank.zip(timer)
 //    .sink { (completion) in
