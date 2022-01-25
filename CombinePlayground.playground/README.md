@@ -14,7 +14,6 @@
 10. [CurrentValueSubject Publisher](#currentvaluesubject-publisher) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/CurrentValueSubject.xcplaygroundpage/Contents.swift)
 11. [PassthroughSubject Publisher](#passthroughsubject-publisher) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/PassthroughSubject.xcplaygroundpage/Contents.swift)
 12. [@Published Wrapper](#published-wrapper) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/%40Published.xcplaygroundpage/Contents.swift)
-13. []() - [(Go to File)]()
 ___
 
 ## Creating Subscriptions
@@ -566,3 +565,5 @@ Receive Value ["Bill", "Susan"] with ["Bill"]
 ```
 
 You can see that when we sent Susan the userNames was still `["Bill"]`
+
+___
