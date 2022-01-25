@@ -9,6 +9,9 @@
         <page name='AssignTo'/>
         <page name='MultiThreading-ReceiveOn'/>
         <page name='MultiThreading-SubscribeOn'/>
-        <page name='SubscriberPattern'/>
+        <page name='SubscriptionPattern'/>
+        <page name='CurrentValueSubject'/>
+        <page name='PassthroughSubject'/>
+        <page name='MultiplePublisher-Example'/>
     </pages>
 </playground>

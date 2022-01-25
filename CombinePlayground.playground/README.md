@@ -11,7 +11,8 @@
 7. [Receive On](#receive-on) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/MultiThreading-ReceiveOn.xcplaygroundpage/Contents.swift)
 8. [Subscribe On](#subscribe-on) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/MultiThreading-SubscribeOn.xcplaygroundpage/Contents.swift)
 9. [Subscription Pattern](#subscription-pattern) - [(Go to File)](https://github.com/bmonish/ios-learning/blob/master/CombinePlayground.playground/Pages/SubscriptionPattern.xcplaygroundpage/Contents.swift)
-
+10. [CurrentValueSubject Publisher](#currentvaluesubject-publisher) - [(Go to File)]()
+11. [PassthroughSubject Publisher](#passthroughsubject-publisher) - [(Go to File)]()
 ___
 
 ## Creating Subscriptions
@@ -366,3 +367,151 @@ didSet 2
 
 ___
 
+# Publishers
+
+There are few types of Publishers
+
+1. Continuously Emitting values (eg. CurrentValueSubject, PassthroughSubject, @Publisher)
+2. Limited Value Publishers (eg. Sequence, Just, Future, Deferred etc.)
+
+Foundation framework has certain publishers. For example:
+
+- Timer 
+- URLSession dataTaskPublisher
+- Notification
+- Publisher on KVO instance - replacing target / action patterns
+
+Type System of Publishers:
+
+- type erasing:
+- Any Publisher
+- .eraseToAnyPublisher()
+
+These are used for func that return publishers
+
+---
+
+## CurrentValueSubject Publisher
+
+A Subject is a Publisher that you can use to continuously send values.
+
+A `CurrentValueSubject` works like var that has a publisher attached to it.
+
+```swift
+struct User {
+    var id: Int
+    var name: String
+}
+
+let currentUserId = CurrentValueSubject<Int, Never>(1000)
+let userNames = CurrentValueSubject<[String], Never>(["Bob", "Jack", "Luise"])
+
+let currentUser = CurrentValueSubject<User, Never>(User(id: 1, name: "Bob"))
+
+// To get the value of the CurrentValueSubject
+print("Current User Id: \(currentUserId.value)")
+
+// Subscribing to Subject
+let subscription = currentUserId.sink {
+    print("Completion \($0)")
+} receiveValue: { value in
+    print("Receive Value: \(value)")
+}
+
+// Passing down new values with Subject
+currentUserId.send(1)
+currentUserId.send(2)
+
+// Sending Completion Finished with Subject
+currentUserId.send(completion: .finished)
+
+// Any values sent after the completion won't be processed
+currentUserId.send(10)
+```
+
+___
+
+## PassthroughSubject Publisher
+
+This will not hold a default value. Used for actions / proccess which is equivalent to a function. And it also doesn't have a `value` property.
+
+```swift
+let newUserNameEntered = PassthroughSubject<String, Never>()
+```
+
+```swift
+// Subscribing to the PassthroughSubject - Doesn't Have an inital value
+let subscription = newUserNameEntered.sink {
+    print("Completion: \($0)")
+} receiveValue: { (value) in
+    print("Receive Value: \(value)")
+}
+```
+
+And we can pass down new values to the publisher by using the `send` method.
+
+```swift
+// Passing down new values to the Subject
+newUserNameEntered.send("Bob")
+
+// Sending Completion
+newUserNameEntered.send(completion: .finished)
+```
+
+### Example of Using CurrentValueSubject and PassthroughSubject together - [Example File]()
+
+In this example we have userNamesSubject which is of type `CurrentValueSubject` publisher and it holds an array of strings which are userNames. Since we want this to be protected we can use `AnyPublisher`. It is a publisher that performs type erasure by wrapping another publisher.
+
+And we create a subscription for the `newUserNameEntered` PassthrougSubject Publisher and it gets a string as input for the data stream. We use the subscription to update the values held in userNamesSubject.
+
+And we can use the `userNames` of any `AnyPublisher` to just read the data stream.
+
+```swift
+class ViewModel {
+    
+    private let userNamesSubject = CurrentValueSubject<[String], Never>(["Bill"])
+    var userNames: AnyPublisher<[String], Never>
+    
+    let newUserNameEntered = PassthroughSubject<String, Never>()
+    
+    var subscriptions = Set<AnyCancellable>()
+    
+    init () {
+        userNames = userNamesSubject.eraseToAnyPublisher()
+        
+        // Creating a publisher stream that will updated userNames whenever a newUserNameEntered gets a new value
+        newUserNameEntered
+            .filter({ $0.count > 3 })
+            .sink { _ in
+                
+            } receiveValue: { [unowned self] username in
+                //            userNames.value = userNames.value + [username]
+                self.userNamesSubject.send(userNamesSubject.value + [username])
+            }.store(in: &subscriptions)
+        
+        userNames
+            .sink { users in
+                print("UserNames changed to \(users)")
+            }.store(in: &subscriptions)
+    }
+}
+```
+Executing the above code:
+
+```swift
+let viewModel = ViewModel()
+
+// Adding a new User "Susan"
+viewModel.newUserNameEntered.send("Susan")
+
+// This will get filtered
+viewModel.newUserNameEntered.send("Ab")
+
+// Adding another User named "Bob"
+viewModel.newUserNameEntered.send("Bob")
+
+// Protected path - This will thrown an error
+//viewModel.userNames.send("Another Name")
+```
+
+___
