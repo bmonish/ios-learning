@@ -26,6 +26,7 @@ class SegmentViewController: UIViewController {
         segmentControl1 = UISegmentedControl.configureMySegmentedControl(items: items1, action: #selector(segmentDidChange(_:)), forTarget: self)
         segmentControl2 = UISegmentedControl.configureMySegmentedControl(items: icontItems as [Any], action: #selector(segmentDidChange(_:)), forTarget: self)
         segmentControl3 = UISegmentedControl.configureMySegmentedControl(items: items2, action: #selector(segmentDidChange(_:)), forTarget: self, borderColor: .red, tintColor: .green)
+
         
         [segmentControl1, segmentControl2, segmentControl3].forEach { view.addSubview($0) }
         
