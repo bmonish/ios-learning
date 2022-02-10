@@ -8,41 +8,30 @@
 import UIKit
 
 class SegmentViewController: UIViewController {
-    
-    var segmentControl: UISegmentedControl!
+
     var segmentControl1: UISegmentedControl!
     var segmentControl2: UISegmentedControl!
+    var segmentControl3: UISegmentedControl!
     
-    var items = ["1", "2", "3"]
+    
     var items1 = ["Channels", "Chats", "Groups"]
     var icontItems = [
         UIImage(systemName: "folder"),
         UIImage(systemName: "tray"),
         UIImage(systemName: "trash")
     ]
+    var items2 = ["1", "2", "3"]
+    
     func setupSegmentControls() {
-        segmentControl = UISegmentedControl.configureMySegmentedControl(items: items, action: #selector(segmentDidChange(_:)), forTarget: self)
         segmentControl1 = UISegmentedControl.configureMySegmentedControl(items: items1, action: #selector(segmentDidChange(_:)), forTarget: self)
         segmentControl2 = UISegmentedControl.configureMySegmentedControl(items: icontItems as [Any], action: #selector(segmentDidChange(_:)), forTarget: self)
+        segmentControl3 = UISegmentedControl.configureMySegmentedControl(items: items2, action: #selector(segmentDidChange(_:)), forTarget: self, borderColor: .red, tintColor: .green)
         
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .center
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(segmentControl)
-        stackView.addArrangedSubview(segmentControl1)
-        stackView.addArrangedSubview(segmentControl2)
+        [segmentControl1, segmentControl2, segmentControl3].forEach { view.addSubview($0) }
         
-        view.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-//            stackView.heightAnchor.constraint(equalToConstant: 120),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0)
-        ])
+        segmentControl1.setAnchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 10))
+        segmentControl2.setAnchor(top: segmentControl1.bottomAnchor, leading: view.leadingAnchor, padding: .init(top: 10, left: 10, bottom: 0, right: 0))
+        segmentControl3.setAnchor(top: segmentControl2.bottomAnchor, leading: view.leadingAnchor, padding: .init(top: 10, left: 10, bottom: 0, right: 0))
     }
     
     @objc

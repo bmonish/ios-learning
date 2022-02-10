@@ -9,28 +9,72 @@ import XCTest
 @testable import MyResubaleComponents
 
 class MyResubaleComponentsTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    // Tests for buttons
+    
+    func testOutlineButton() {
+        let expectedText = "Outline"
+        let expectedTextColor = MyColors.green.getMyColor()
+        let expectedBorderColor = MyColors.red.getMyColor()
+        
+        let button = UIButton.configureMyButton(title: "Outline", textColor: .green, borderColor: .red)
+        
+        XCTAssertEqual(button.titleLabel?.text, expectedText)
+        XCTAssertEqual(button.titleLabel?.textColor, expectedTextColor)
+        XCTAssertEqual(button.layer.borderColor, expectedBorderColor.cgColor)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testFillButton() {
+        let expectedText = "Fill"
+        let expectedTextColor = MyColors.white.getMyColor()
+        let expectedBackgroundColor = MyColors.blue.getMyColor()
+        
+        let button = UIButton.configureMyButton(title: "Fill", textColor: .white, bgColor: .blue)
+        
+        XCTAssertEqual(button.titleLabel?.text, expectedText)
+        XCTAssertEqual(button.titleLabel?.textColor, expectedTextColor)
+        XCTAssertEqual(button.backgroundColor, expectedBackgroundColor)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testIconButton() {
+        let expectedText = "Icon"
+        let btnIcon: UIImage! = UIImage(systemName: "shareplay")?.withTintColor(.systemRed, renderingMode: .alwaysTemplate)
+        let expectedTextColor = MyColors.white.getMyColor()
+        let expectedBackgroundColor = MyColors.black.getMyColor()
+        
+        let button = UIButton.configureMyButton(title: "Icon", icon: btnIcon, textColor: .white, bgColor: .black)
+        
+        XCTAssertEqual(button.titleLabel?.text, expectedText)
+        XCTAssertEqual(button.currentImage, btnIcon)
+        XCTAssertEqual(button.titleLabel?.textColor, expectedTextColor)
+        XCTAssertEqual(button.backgroundColor, expectedBackgroundColor)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    // Tests for UISegmented Control
+    @objc
+    func hello() {
+        print("hello")
+    }
+    
+    func testSegmentControl() {
+        let items = ["Hi!", "Bye"]
+        
+        let segmentControl = UISegmentedControl.configureMySegmentedControl(items: items, action: #selector(hello), forTarget: nil)
+        
+        XCTAssertEqual(segmentControl.numberOfSegments, items.count)
+        XCTAssertEqual(segmentControl.selectedSegmentIndex, -1)
+    }
+    
+    func testCustomSegmentControl() {
+        let items = ["1", "2", "3"]
+        let expectedBorderColor = MyColors.blue.getMyColor().cgColor
+        let expectedTintColor = MyColors.red.getMyColor()
+        
+        let segmentControl = UISegmentedControl.configureMySegmentedControl(items: items, action: #selector(hello), forTarget: nil, borderColor: .blue, tintColor: .red)
+        
+        XCTAssertEqual(segmentControl.numberOfSegments, items.count)
+        XCTAssertEqual(segmentControl.layer.borderColor, expectedBorderColor)
+        XCTAssertEqual(segmentControl.selectedSegmentTintColor, expectedTintColor)
     }
 
 }

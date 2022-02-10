@@ -20,7 +20,7 @@ public enum MyColors {
         case .red:
             return UIColor.red
         case .blue:
-            return UIColor.systemBlue
+            return UIColor.blue
         case .green:
             return UIColor.green
         case .white:

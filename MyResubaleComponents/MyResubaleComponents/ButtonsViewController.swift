@@ -15,37 +15,29 @@ class ButtonsViewController: UIViewController {
     var btnIcon: UIImage!
     var btnIconView: UIImageView!
     
-    func setupButton() {
+    func setupView() {
+        // Setting Up Icon
         btnIcon = UIImage(systemName: "shareplay")?.withTintColor(.systemRed, renderingMode: .alwaysTemplate)
         
+        // Setting up three styles of button
         button = UIButton.configureMyButton(title: "Bordered Button", textColor: .red, borderColor: .red)
         button1 = UIButton.configureMyButton(title: "Filled Button", textColor: .white, bgColor: .blue)
-        
         button2 = UIButton.configureMyButton(title: "Image Icon", icon: btnIcon, textColor: .white, bgColor: .black)
+        
+        view.addSubview(button)
+        view.addSubview(button1)
+        view.addSubview(button2)
+        
+        // Custom Constraint Functions
+        button.setAnchor(leading: view.leadingAnchor, centerY: view.centerYAnchor, centerPadding: -50, padding: .init(top: 0, left: 20, bottom: 0, right: 0), size: .init(width: 0, height: 50))
+        button1.setAnchor(leading: view.leadingAnchor, trailing: view.trailingAnchor, centerY: view.centerYAnchor, padding: .init(top: 0, left: 20, bottom: 0, right: 20))
+        button2.setAnchor(leading: view.leadingAnchor, trailing: view.trailingAnchor, centerY: view.centerYAnchor, centerPadding: 40, padding: .init(top: 0, left: 20, bottom: 0, right: 20))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Reuse Buttons"
-        setupButton()
-        view.addSubview(button)
-        view.addSubview(button1)
-        view.addSubview(button2)
-        //        view.addSubview(appleIcon)
-        
-        NSLayoutConstraint.activate([
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -40),
-            button1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            button1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            button1.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0),
-            button2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            button2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            button2.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 40)
-            
-        ])
+        setupView()
     }
 }
-
