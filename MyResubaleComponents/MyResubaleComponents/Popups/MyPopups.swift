@@ -10,6 +10,16 @@ import UIKit
 
 extension UIAlertController {
     
+    /**
+     This method creates a Basic UIAlert Controller [Default].
+
+     - Parameter title: A String which you want to be the alert's title.
+     - Parameter message: A String which you want to be the alert's description.
+     - Parameter preferredStyle (Optional): Type of UIAlertController.Style for the alert's style.
+     - Parameter actions (Optional): An Array of Action of type UIAlertAction for adding actions to the alert.
+     
+     - Returns: an UIAlertControllers with the given title, message and actions added to it.
+     */
     class func configureBasicAlert(title: String, message: String, preferredStyle: UIAlertController.Style = .alert, actions: [UIAlertAction] = [.init(title: "Okay", style: .default)]) -> UIAlertController {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
