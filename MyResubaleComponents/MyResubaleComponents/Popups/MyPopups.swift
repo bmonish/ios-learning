@@ -28,6 +28,15 @@ extension UIAlertController {
         return alert
     }
     
+    /**
+     This method creates a  UIAlert Controlle with an Image.r [Default].
+
+     - Parameter title: A String which you want to be the alert's title.
+     - Parameter message: A String which you want to be the alert's description.
+     - Parameter actions (Optional): An Array of Action of type UIAlertAction for adding actions to the alert.
+     
+     - Returns: an UIAlertControllers with the given title, message, actions and Image added to it.
+     */
     class func configureImageAlert(title: String, message: String, actions: [UIAlertAction] = [.init(title: "Okay", style: .default)]) -> UIAlertController {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
