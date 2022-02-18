@@ -1,4 +1,4 @@
-## Dispatch Queues
+# Dispatch Queues
 
 An object that manages the execution of tasks serially or concurrently on your app's main thread or on a background thread.
 
@@ -40,3 +40,9 @@ DispatchQueue.global(qos: .background).async {
 - `unspecified` - The absence of a quality-of-service class.
 
 ---
+
+# Dispatch Groups
+
+A `group of tasks` that you `monitor` as a single unit.
+
+Groups allow you to `aggregate a set of tasks` and synchronize behaviors on the group. You attach multiple work items to a group and schedule them for asynchronous execution on the same queue or different queues. When all work items finish executing, the group executes its completion handler. You can also wait synchronously for all tasks in the group to finish executing.
