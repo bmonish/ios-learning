@@ -46,3 +46,60 @@ DispatchQueue.global(qos: .background).async {
 A `group of tasks` that you `monitor` as a single unit.
 
 Groups allow you to `aggregate a set of tasks` and synchronize behaviors on the group. You attach multiple work items to a group and schedule them for asynchronous execution on the same queue or different queues. When all work items finish executing, the group executes its completion handler. You can also wait synchronously for all tasks in the group to finish executing.
+
+Creating a DispatchGroup
+
+```swift
+let group = DispatchGroup()
+```
+
+Notifying the group that we are entering some work
+
+```swift
+group.enter()
+```
+
+And notifying the group when we are done with some work (leaving).
+
+```
+group.leave()
+```
+
+Simple Example:
+
+```swift
+import UIKit
+
+func getData() {
+    let urls = [
+        "https://api.google.com/1",
+        "https://api.google.com/2",
+        "https://api.google.com/3",
+    ]
+
+    let group = DispatchGroup()
+
+    for url in urls {
+
+        guard let url = URL(string: url) else { continue }
+
+        group.enter()
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
+            defer {
+                group.leave()
+            }
+
+            guard let data = data else { return }
+            print(data)
+        })
+
+        task.resume()
+    }
+
+    group.notify(queue: .main, execute: {
+        print("Group Done")
+    })
+}
+
+getData()
+```
