@@ -103,3 +103,7 @@ func getData() {
 
 getData()
 ```
+
+Another Example: [DispatchGroup in App](https://github.com/bmonish/ios-learning/blob/master/Concurrency/DispatchGroups/DispatchGroups/ViewController.swift)
+
+---
