@@ -107,3 +107,77 @@ getData()
 Another Example: [DispatchGroup in App](https://github.com/bmonish/ios-learning/blob/master/Concurrency/DispatchGroups/DispatchGroups/ViewController.swift)
 
 ---
+
+# Concurrency
+
+## Serial
+
+The previous task must be completed inorder for the next task to begin.
+
+```swift
+let queue = DispatchQueue(label: "bmonish.queue")
+
+queue.async {
+    print("Begin: Task 1")
+    print("End: Task 1")
+}
+
+queue.async {
+    print("Begin: Task 2")
+    print("End: Task 2")
+}
+```
+
+Here the first task is executed first and then the second task is executed only after first is completed.
+
+Output:
+
+```
+Begin: Task 1
+End: Task 1
+Begin: Task 2
+End: Task 2
+```
+
+## Concurrent
+
+It can run tasks concurrently even though the previous tasks hasn't been completed yet,
+
+```swift
+let queue = DispatchQueue(label: "bmonish.queue", attributes: .concurrent)
+
+queue.async {
+    print("Begin: Task 1")
+    print("End: Task 1")
+}
+
+queue.async {
+    print("Begin: Task 2")
+    print("End: Task 2")
+}
+```
+
+Here the output will be: (Although it isn't mandatory that the tasks will end in the same order they have started.)
+
+```
+Begin: Task 1
+Begin: Task 2
+End: Task 1
+End: Task 2
+```
+
+But when the concurrent queues have `synchronous` block they will be executed similar to serial queues.
+
+```swift
+let queue = DispatchQueue(label: "bmonish.queue", attributes: .concurrent)
+
+queue.sync {
+    print("Begin: Task 1")
+    print("End: Task 1")
+}
+
+queue.sync {
+    print("Begin: Task 2")
+    print("End: Task 2")
+}
+```
