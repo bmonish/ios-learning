@@ -1,0 +1,12 @@
+{
+  "data" : [
+    {
+      "filename" : "ios-icon.ttf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

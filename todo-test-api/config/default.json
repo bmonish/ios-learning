@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.gx3bw.mongodb.net/iOSTodo?retryWrites=true&w=majority"
+}

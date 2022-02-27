@@ -1,0 +1,389 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3F212D0C27D720A500B96FD5 /* ZCRemoteWorkStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F212D0B27D720A500B96FD5 /* ZCRemoteWorkStatusModel.swift */; };
+		3F212D1027D777CA00B96FD5 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F212D0F27D777CA00B96FD5 /* OptionsView.swift */; };
+		3F384FF427CF80DB00A032FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F384FF327CF80DB00A032FE /* AppDelegate.swift */; };
+		3F384FF627CF80DB00A032FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F384FF527CF80DB00A032FE /* SceneDelegate.swift */; };
+		3F384FF827CF80DB00A032FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F384FF727CF80DB00A032FE /* ViewController.swift */; };
+		3F384FFB27CF80DB00A032FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F384FF927CF80DB00A032FE /* Main.storyboard */; };
+		3F384FFD27CF80DD00A032FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F384FFC27CF80DD00A032FE /* Assets.xcassets */; };
+		3F38500027CF80DD00A032FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F384FFE27CF80DD00A032FE /* LaunchScreen.storyboard */; };
+		3F38500827D09C0600A032FE /* ios-icon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F38500727D09A1E00A032FE /* ios-icon.ttf */; };
+		3F45E3BF27D0DE5900D007B0 /* ZohoChatDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45E3BE27D0DE5900D007B0 /* ZohoChatDependencies.swift */; };
+		3F45E3C127D0DEE700D007B0 /* RemoteWorkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45E3C027D0DEE700D007B0 /* RemoteWorkCell.swift */; };
+		3F7F55B127D21905002A5107 /* OptionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F55B027D21905002A5107 /* OptionButtons.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3F212D0B27D720A500B96FD5 /* ZCRemoteWorkStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZCRemoteWorkStatusModel.swift; sourceTree = "<group>"; };
+		3F212D0F27D777CA00B96FD5 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		3F384FF027CF80DB00A032FE /* DemoTableRemoteWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoTableRemoteWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F384FF327CF80DB00A032FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3F384FF527CF80DB00A032FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3F384FF727CF80DB00A032FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F384FFA27CF80DB00A032FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F384FFC27CF80DD00A032FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F384FFF27CF80DD00A032FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3F38500127CF80DD00A032FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F38500727D09A1E00A032FE /* ios-icon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ios-icon.ttf"; sourceTree = "<group>"; };
+		3F45E3BE27D0DE5900D007B0 /* ZohoChatDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZohoChatDependencies.swift; sourceTree = "<group>"; };
+		3F45E3C027D0DEE700D007B0 /* RemoteWorkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWorkCell.swift; sourceTree = "<group>"; };
+		3F7F55B027D21905002A5107 /* OptionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButtons.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F384FED27CF80DB00A032FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F384FE727CF80DB00A032FE = {
+			isa = PBXGroup;
+			children = (
+				3F384FF227CF80DB00A032FE /* DemoTableRemoteWork */,
+				3F384FF127CF80DB00A032FE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3F384FF127CF80DB00A032FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F384FF027CF80DB00A032FE /* DemoTableRemoteWork.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F384FF227CF80DB00A032FE /* DemoTableRemoteWork */ = {
+			isa = PBXGroup;
+			children = (
+				3F38500727D09A1E00A032FE /* ios-icon.ttf */,
+				3F384FF327CF80DB00A032FE /* AppDelegate.swift */,
+				3F384FF527CF80DB00A032FE /* SceneDelegate.swift */,
+				3F384FF727CF80DB00A032FE /* ViewController.swift */,
+				3F384FF927CF80DB00A032FE /* Main.storyboard */,
+				3F384FFC27CF80DD00A032FE /* Assets.xcassets */,
+				3F384FFE27CF80DD00A032FE /* LaunchScreen.storyboard */,
+				3F38500127CF80DD00A032FE /* Info.plist */,
+				3F45E3BE27D0DE5900D007B0 /* ZohoChatDependencies.swift */,
+				3F45E3C027D0DEE700D007B0 /* RemoteWorkCell.swift */,
+				3F7F55B027D21905002A5107 /* OptionButtons.swift */,
+				3F212D0B27D720A500B96FD5 /* ZCRemoteWorkStatusModel.swift */,
+				3F212D0F27D777CA00B96FD5 /* OptionsView.swift */,
+			);
+			path = DemoTableRemoteWork;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F384FEF27CF80DB00A032FE /* DemoTableRemoteWork */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F38500427CF80DD00A032FE /* Build configuration list for PBXNativeTarget "DemoTableRemoteWork" */;
+			buildPhases = (
+				3F384FEC27CF80DB00A032FE /* Sources */,
+				3F384FED27CF80DB00A032FE /* Frameworks */,
+				3F384FEE27CF80DB00A032FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DemoTableRemoteWork;
+			productName = DemoTableRemoteWork;
+			productReference = 3F384FF027CF80DB00A032FE /* DemoTableRemoteWork.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F384FE827CF80DB00A032FE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					3F384FEF27CF80DB00A032FE = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 3F384FEB27CF80DB00A032FE /* Build configuration list for PBXProject "DemoTableRemoteWork" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3F384FE727CF80DB00A032FE;
+			productRefGroup = 3F384FF127CF80DB00A032FE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F384FEF27CF80DB00A032FE /* DemoTableRemoteWork */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F384FEE27CF80DB00A032FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F38500027CF80DD00A032FE /* LaunchScreen.storyboard in Resources */,
+				3F38500827D09C0600A032FE /* ios-icon.ttf in Resources */,
+				3F384FFD27CF80DD00A032FE /* Assets.xcassets in Resources */,
+				3F384FFB27CF80DB00A032FE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F384FEC27CF80DB00A032FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F384FF827CF80DB00A032FE /* ViewController.swift in Sources */,
+				3F212D0C27D720A500B96FD5 /* ZCRemoteWorkStatusModel.swift in Sources */,
+				3F384FF427CF80DB00A032FE /* AppDelegate.swift in Sources */,
+				3F212D1027D777CA00B96FD5 /* OptionsView.swift in Sources */,
+				3F45E3C127D0DEE700D007B0 /* RemoteWorkCell.swift in Sources */,
+				3F384FF627CF80DB00A032FE /* SceneDelegate.swift in Sources */,
+				3F7F55B127D21905002A5107 /* OptionButtons.swift in Sources */,
+				3F45E3BF27D0DE5900D007B0 /* ZohoChatDependencies.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3F384FF927CF80DB00A032FE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F384FFA27CF80DB00A032FE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3F384FFE27CF80DD00A032FE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F384FFF27CF80DD00A032FE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3F38500227CF80DD00A032FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3F38500327CF80DD00A032FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3F38500527CF80DD00A032FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LA4QB36AJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DemoTableRemoteWork/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bmonish.DemoTableRemoteWork;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3F38500627CF80DD00A032FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8LA4QB36AJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DemoTableRemoteWork/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bmonish.DemoTableRemoteWork;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F384FEB27CF80DB00A032FE /* Build configuration list for PBXProject "DemoTableRemoteWork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F38500227CF80DD00A032FE /* Debug */,
+				3F38500327CF80DD00A032FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F38500427CF80DD00A032FE /* Build configuration list for PBXNativeTarget "DemoTableRemoteWork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F38500527CF80DD00A032FE /* Debug */,
+				3F38500627CF80DD00A032FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F384FE827CF80DB00A032FE /* Project object */;
+}
