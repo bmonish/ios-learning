@@ -112,7 +112,7 @@ Another Example: [DispatchGroup in App](https://github.com/bmonish/ios-learning/
 
 ## Serial
 
-The previous task must be completed inorder for the next task to begin.
+The previous task must be completed inorder for the next task to begin. Predictable Execution Order. Prevents Race Condition.
 
 ```swift
 let queue = DispatchQueue(label: "bmonish.queue")
@@ -141,7 +141,7 @@ End: Task 2
 
 ## Concurrent
 
-It can run tasks concurrently even though the previous tasks hasn't been completed yet,
+It can run tasks concurrently even though the previous tasks hasn't been completed yet. Faster but Unpredictable Order.
 
 ```swift
 let queue = DispatchQueue(label: "bmonish.queue", attributes: .concurrent)
@@ -183,3 +183,5 @@ queue.sync {
 ```
 
 ---
+
+# Operation Queues
